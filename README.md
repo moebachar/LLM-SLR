@@ -10,20 +10,32 @@ Key features include:
 ---
 
 ## Walkthrough of the Pipeline
-1. **PDF Text Extraction**
-   - The pipeline begins by loading and parsing PDFs into structured text using `MultiPDFExtractor`.
-   - Metadata such as title, authors, and keywords are extracted via LLMs.
-   - Extracted text is split into manageable chunks and embedded using OpenAI embeddings.
-   - The embeddings and metadata are stored in a Chroma vector database for efficient retrieval.
+The pipeline consists of four main steps:
 
-2. **Question Retrieval and Answer Generation**
-   - Questions are loaded from an Excel file.
-   - Relevant chunks are retrieved from the vector database using multi-query retrievers.
-   - Answers to the questions are generated using LLMs with context-aware prompt templates.
+### 1. Preprocessing
+- **PDF Loading and Parsing**: Articles in PDF format are loaded and parsed using `MultiPDFExtractor`.
+- **Metadata Extraction**: Titles, authors, and keywords are extracted via LLMs.
+- **Text Chunking**: The content is divided into manageable chunks using recursive text splitting and NLTK sentence tokenization.
+- **Embedding Generation**: Each chunk is converted into vector embeddings using OpenAI's `text-embedding-ada-002` model.
+- **Chroma Vectorstore**: The embeddings are stored in a persistent Chroma database for efficient retrieval.
 
-3. **Decision-Making**
-   - Based on the generated answers, inclusion decisions are made for each article.
-   - Decisions and explanations are logged in a structured Excel sheet with color-coded rows for easy interpretation.
+### 2. Data Retrieval
+- **Question Handling**: Questions are read from an input Excel file.
+- **Multi-Query Retrieval**: For each question, multiple paraphrased sub-queries are generated using LLMs to enhance retrieval accuracy.
+- **Relevant Chunk Retrieval**: Chroma is queried to fetch the most relevant text chunks for each sub-query. These are combined and de-duplicated for further processing.
+
+### 3. Question Answering
+- **Context Construction**: Retrieved chunks are combined into a coherent context.
+- **Answer Generation**: Using an LLM and a custom prompt template, answers are generated based on the context and the question.
+- **Result Validation**: Generated answers are validated for clarity and completeness.
+
+### 4. Decision
+- **Inclusion/Exclusion**: The system evaluates whether each article should be included in the review based on the generated answers.
+- **Excel Logging**: Decisions (YES/NO) and explanations are recorded in an Excel file, with color-coded rows (green for YES, red for NO) for easy interpretation.
+
+Below is a graphical representation of the pipeline:
+
+![Pipeline Overview](https://via.placeholder.com/800x400?text=Pipeline+Diagram+Placeholder)
 
 ---
 
@@ -80,7 +92,3 @@ Key features include:
 4. Mitrov, G., et al. (2024). Combining Semantic Matching, Word Embeddings, Transformers, and LLMs for Enhanced Document Ranking: Application in Systematic Reviews. *Big Data and Cognitive Computing*. https://doi.org/10.3390/bdcc8090110
 5. Landschaft, A., et al. (2024). Implementation and evaluation of an additional GPT-4-based reviewer in PRISMA-based medical systematic literature reviews. *International Journal of Medical Informatics*. https://doi.org/10.1016/j.ijmedinf.2024.105531
 6. Scherbakov, D., et al. (2024). The emergence of Large Language Models (LLM) as a tool in literature reviews. *arXiv*. https://doi.org/10.48550/arXiv.2409.04600
-
----
-
-Feel free to contribute to the repository or raise issues for improvements!
