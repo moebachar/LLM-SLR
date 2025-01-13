@@ -2,6 +2,8 @@
 
 This project automates the systematic review process by leveraging Large Language Models (LLMs) and advanced NLP techniques. It provides a modular pipeline to handle text extraction, vector embeddings, and decision-making for relevance determination. The automation significantly reduces the manual workload while maintaining scalability and accuracy.
 
+![Pipeline Overview](./pipline%20figure.svg)
+
 Key features include:
 
 - **PDF Text Extraction**: Extract structured text from articles.
@@ -39,10 +41,6 @@ The pipeline consists of four main steps:
 
 - **Inclusion/Exclusion**: The system evaluates whether each article should be included in the review based on the generated answers.
 - **Excel Logging**: Decisions (YES/NO) and explanations are recorded in an Excel file, with color-coded rows (green for YES, red for NO) for easy interpretation.
-
-Below is a graphical representation of the pipeline:
-
-![Pipeline Overview](./pipline%20figure.svg)
 
 ---
 
