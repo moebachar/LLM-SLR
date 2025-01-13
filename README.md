@@ -80,7 +80,7 @@ Below is a graphical representation of the pipeline:
 
 7. Execute the main pipeline:
    ```bash
-   python main.py
+   python main.py --pdf_dir path/to/your/pdf-directory --questions_excel path/to/your/output_excel --output_excel path/to/your/output_excel 
    ```
 
 ---
