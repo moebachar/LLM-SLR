@@ -1,0 +1,12 @@
+openai
+PyPDF2
+openpyxl
+nltk
+keybert
+python-dotenv
+langchain
+langchain-community
+langchain-openai 
+langchain-chroma
+ipykernel
+pypdf

@@ -1,0 +1,9 @@
+# Ignore directories
+articles/
+articles-lite/
+chroma_db/
+__pycache__/
+
+# Ignore environment file
+.env
+
