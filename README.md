@@ -52,10 +52,10 @@ Below is a graphical representation of the pipeline:
    cd automated-review
    ```
 
-2. Create a virtual environment:
+2. Create a Conda environment:
    ```bash
-   python -m venv env
-   source env/bin/activate  # On Windows: `env\\Scripts\\activate`
+   conda create -n automated_review python=3.8 -y
+   conda activate automated_review
    ```
 
 3. Install dependencies:
